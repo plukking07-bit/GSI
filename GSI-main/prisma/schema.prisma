@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  schools   School[]
+
+  @@map("admins")
+}
+
+model User {
+  id               String    @id @default(cuid())
+  name             String?
+  email            String    @unique
+  password         String?
+  emailVerified    Boolean   @default(false) @map("email_verified")
+  image            String?
+  createdAt        DateTime  @default(now()) @map("created_at")
+  schools          School[]
+
+  @@map("users")
+}
+
+model School {
+  id          String     @id @default(cuid())
+  schoolName  String     @map("school_name")
+  coverage    String?
+  area        String
+  staff       String
+  totalScore  Float      @map("total_score")
+  submittedAt DateTime   @default(now()) @map("submitted_at")
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @updatedAt @map("updated_at")
+  status      String     @default("pending")
+  verifiedAt  DateTime?  @map("verified_at")
+  userId      String?    @map("user_id")
+  adminId     String?    @map("admin_id")
+  evidences   Evidence[]
+  admin       Admin?     @relation(fields: [adminId], references: [id])
+  user        User?      @relation(fields: [userId], references: [id])
+  scores      Score?
+
+  @@map("schools")
+}
+
+model Score {
+  id              String   @id @default(cuid())
+  schoolId        String   @unique @map("school_id")
+  sti1            Float    @default(0)
+  sti2            Float    @default(0)
+  sti3            Float    @default(0)
+  sti4            Float    @default(0)
+  wmr1            Float    @default(0)
+  wmr2            Float    @default(0)
+  wmr3            Float    @default(0)
+  wmr4            Float    @default(0)
+  wmr5            Float    @default(0)
+  ecc1            Float    @default(0)
+  ecc2            Float    @default(0)
+  ecc3            Float    @default(0)
+  ecc4            Float    @default(0)
+  ecc5            Float    @default(0)
+  hwq1            Float    @default(0)
+  hwq2            Float    @default(0)
+  hwq3            Float    @default(0)
+  gpm1            Float    @default(0)
+  gpm2            Float    @default(0)
+  gpm3            Float    @default(0)
+  ilp1            Float    @default(0)
+  ilp2            Float    @default(0)
+  ere1            Float    @default(0)
+  ere2            Float    @default(0)
+  ere3            Float    @default(0)
+  ere4            Float    @default(0)
+  ere5            Float    @default(0)
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+  ecc1Explanation String?  @map("ecc1_explanation")
+  ecc2Explanation String?  @map("ecc2_explanation")
+  ecc3Explanation String?  @map("ecc3_explanation")
+  ecc4Explanation String?  @map("ecc4_explanation")
+  ecc5Explanation String?  @map("ecc5_explanation")
+  ere1Explanation String?  @map("ere1_explanation")
+  ere2Explanation String?  @map("ere2_explanation")
+  ere3Explanation String?  @map("ere3_explanation")
+  ere4Explanation String?  @map("ere4_explanation")
+  ere5Explanation String?  @map("ere5_explanation")
+  gpm1Explanation String?  @map("gpm1_explanation")
+  gpm2Explanation String?  @map("gpm2_explanation")
+  gpm3Explanation String?  @map("gpm3_explanation")
+  hwq1Explanation String?  @map("hwq1_explanation")
+  hwq2Explanation String?  @map("hwq2_explanation")
+  hwq3Explanation String?  @map("hwq3_explanation")
+  ilp1Explanation String?  @map("ilp1_explanation")
+  ilp2Explanation String?  @map("ilp2_explanation")
+  sti1Explanation String?  @map("sti1_explanation")
+  sti2Explanation String?  @map("sti2_explanation")
+  sti3Explanation String?  @map("sti3_explanation")
+  sti4Explanation String?  @map("sti4_explanation")
+  wmr1Explanation String?  @map("wmr1_explanation")
+  wmr2Explanation String?  @map("wmr2_explanation")
+  wmr3Explanation String?  @map("wmr3_explanation")
+  wmr4Explanation String?  @map("wmr4_explanation")
+  wmr5Explanation String?  @map("wmr5_explanation")
+  school          School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@map("scores")
+}
+
+model Evidence {
+  id        String   @id @default(cuid())
+  schoolId  String   @map("school_id")
+  fileName  String   @map("file_name")
+  fileData  String   @map("file_data")
+  fileSize  Int      @map("file_size")
+  mimeType  String   @default("application/pdf") @map("mime_type")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  school    School   @relation(fields: [schoolId], references: [id], onDelete: Cascade)
+
+  @@map("evidences")
+}

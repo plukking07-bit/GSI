@@ -1,0 +1,10 @@
+{
+    "prisma.pinToPrisma6": true,
+    "eslint.workingDirectories": [
+        {
+            "directory": "./",
+            "changeProcessCWD": true
+        }
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
+}
