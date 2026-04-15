@@ -322,7 +322,7 @@ export default function AdminDashboard() {
                                             </div>
                                             <div className="flex flex-col items-end flex-shrink-0">
                                                 <span className="font-display font-bold text-primary text-xl leading-none">{school.totalScore.toFixed(1)}</span>
-                                                <span className="font-body text-xs text-gray-400 dark:text-slate-500">/ 145</span>
+                                                <span className="font-body text-xs text-gray-400 dark:text-slate-500">/ 100</span>
                                             </div>
                                         </div>
                                         {/* Status badges */}
@@ -455,7 +455,7 @@ export default function AdminDashboard() {
                                                     <span className="font-display font-bold text-primary text-lg">
                                                         {school.totalScore.toFixed(1)}
                                                     </span>
-                                                    <span className="font-body text-xs text-gray-400 dark:text-slate-500"> / 145</span>
+                                                    <span className="font-body text-xs text-gray-400 dark:text-slate-500"> / 100</span>
                                                 </td>
                                                 <td className="px-4 py-4 text-center">
                                                     {school.status === 'verified' ? (
@@ -655,7 +655,7 @@ export default function AdminDashboard() {
                         <div className="flex items-center justify-between mb-6">
                             <div>
                                 <h3 className="font-display font-bold text-gray-900 dark:text-white text-lg">คะแนน: {selectedScores.school.schoolName}</h3>
-                                <p className="font-body text-xs text-gray-500 dark:text-slate-400 mt-0.5">คะแนนรวม: <span className="font-bold text-primary">{selectedScores.school.totalScore.toFixed(1)} / 145</span></p>
+                                <p className="font-body text-xs text-gray-500 dark:text-slate-400 mt-0.5">คะแนนรวม: <span className="font-bold text-primary">{selectedScores.school.totalScore.toFixed(1)} / 100</span></p>
                             </div>
                             <button
                                 onClick={() => setSelectedScores(null)}
