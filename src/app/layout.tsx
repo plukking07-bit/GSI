@@ -67,7 +67,7 @@ export default function RootLayout({
               {/* Right - Contact Info */}
               <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs">
           <a
-            href="https://drive.google.com/file/d/1EwiJcJ3sTodkadKENC6RLRPb_ceqmdAC/view?usp=sharing"
+            href="https://drive.google.com/file/d/1oD3EBUzrYKhdwA3kGkasRG6ny6vIUi5E/view?usp=sharing"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-1.5 hover:opacity-80 transition-opacity"
